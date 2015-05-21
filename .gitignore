@@ -1,6 +1,9 @@
 # Object files
 *.o
 *.ko
+*.com
+*.class
+*.exe
 
 # Libraries
 *.lib
@@ -16,3 +19,16 @@
 *.exe
 *.out
 *.app
+
+# Data & log files
+*.dat
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
