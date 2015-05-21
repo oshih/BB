@@ -3,6 +3,7 @@
 # Paths etc.
 #---------------------------------------------------
 LIB_PATH = ./BBBio_lib
+INCLUDE_PATH = ./BBBio_lib
 DEMO_PATH = ./Demo
 TOOLKIT_PATH = ./Toolkit
 LAB_PATH = ./Lab
@@ -18,6 +19,7 @@ CC_PATH =
 CC_PREFIX = 
 CC = ${CC_PATH}/${CC_PREFIX}gcc
 AR = ${CC_PATH}/${CC_PREFIX}ar
+LD = ${CC_PATH}/${CC_PREFIX}ld
 
 # Display information
 help : 
@@ -104,7 +106,7 @@ DAC_VOICE : ${DEMO_PATH}/Demo_DAC/DAC_voice.c libBBBio.a
 	${CC} -o DAC_VOICE ${DEMO_PATH}/Demo_DAC/DAC_voice.c -L ${LIB_PATH} -l${LIBRARY} -lm -pthread -O3
 
 Sound_Capture_ADC : ${DEMO_PATH}/Demo_ADC/ADC.c libBBBio.a
-	${CC} -o ADC ${DEMO_PATH}/Demo_Sound_Capture_ADC/Capture.c -L ${LIB_PATH} -I ${INCLUDE_PATH} -l${LIBRARY} -lm
+	${CC} -o Sound_Capture_ADC ${DEMO_PATH}/Demo_Sound_Capture_ADC/Capture.c -L ${LIB_PATH} -I ${INCLUDE_PATH} -l${LIBRARY} -lm
 #---------------------------------------------------
 # toolkit 
 #---------------------------------------------------
@@ -133,5 +135,5 @@ VD : ${LAB_PATH}Voice_Door/voice_door.cpp libBBBio.a
 
 .PHONY: clean
 clean :
-	rm -rf ${LIB_PATH}*.o ${LIB_PATH}libBBBio.a libBBBio.a LED ADT7301 GPIO_CLK_status SevenScan Ultrasonic28015 TMP SMOTOR LED_GPIO Debouncing 4x4keypad EP_status PWM RA ADXL345 ADC ADC_CALC L3G4200D
+	rm -rf ${LIB_PATH}*.o ${LIB_PATH}libBBBio.a libBBBio.a LED ADT7301 GPIO_CLK_status SevenScan Ultrasonic28015 TMP SMOTOR LED_GPIO Debouncing 4x4keypad EP_status PWM RA ADXL345 ADC ADC_CALC L3G4200D Sound_Capture_ADC
 

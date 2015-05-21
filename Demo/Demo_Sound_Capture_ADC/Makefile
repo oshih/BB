@@ -5,7 +5,7 @@ LIB_PATH = /root/BBBIOlib/BBBio_lib
 INCLUDE_PATH = /root/BBBIOlib
 
 # without .c extension
-TARGET = ADC
+TARGET = Capture
 
 #---------------------------------------------------
 # Compiler options
