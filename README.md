@@ -3,52 +3,19 @@ BBBiolib
 
 Beaglebone black I/O library , using Memory mapped I/O
 
-Simple C I/O library of Beaglebone balck
+Simple C I/O library of Beaglebone black
 
 ============================
-Hi , everyone
 
-I'm very very sorry. I'm not able to preserve of BBBiolib for private issues.
+*This is a clone of the BBBiolib originally developed by Meng-Lun Cai (Vegetable Avenger) at [https://github.com/VegetableAvenger/BBBIOlib](https://github.com/VegetableAvenger/BBBIOlib)*
 
-I'will freezing update for 1 years.
+Changes would be made to make it compatible with Linux 4.0+
 
-With my deepest regret.
- Meng-Lun, Cai
+### Changes
+* Added demo `sound capture with ADC` using the Roseline board (MEMS Microphone with fixed gain amp on AIN2)
+* Added Makefile for compiling other applications
 
-===========================
-
-
-	V1 	October 2013 - shabaz (iolib) : create basic library 
-
-	V2 	October 2013 - shabaz (iolib) : fix some BUG
-
-	V2.1	November.7 2013 - add some comment and modify function name
-
-	V2.2	November.10 2013 - add GPIO Enable/Disable function (GPIO 1~3)
-
-	V2.3	November.19 2013 - add GPIO Enable/Disable function (GPIO 0)
-
-	V2.4	November.23 2013 - add whole GPIO control function (I/O and direction set)
-
-	V2.5	December.7  2013 - change directory architecture ,add Demo/ and Toolkit/ directory .
-
-	V2.6	December.9  2013 - add simple ePWM module control function in am335x
-
-	V2.7	December.20 2013 - add simple McSPI control function .
-
-	V2.8	March.14 2014 - add ADC application of Arduino Microphone module ,
-				and ADC argument calculation toolkit .
-
-	Freezing March 11 2014 .
-
-=============================================================================================
-
-this library support simple I/O for beaglebone black ,using C .
-
-Demo Directory include some demo basic this library ,each circuit layout ,picture and document in file directory .
-
-
-**Hotw to use :**
+**How to use :**
 
         Build libBBBio.a :
 

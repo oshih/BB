@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "BBBio_lib/BBBiolib.h"
+#include "BBBiolib.h"
 /* ----------------------------------------------------------- */
 #define BUFFER_SIZE 48000
 #define SAMPLE_SIZE 48000
