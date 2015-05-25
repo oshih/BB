@@ -5,14 +5,18 @@
 #include <time.h>
 #include "BBBiolib.h"
 /* ----------------------------------------------------------- */
-#define BUFFER_SIZE 48000
-#define SAMPLE_SIZE 48000
+//#define BUFFER_SIZE 48000
+//#define SAMPLE_SIZE 48000
+// Collect for 1s with 192k
+#define BUFFER_SIZE 192000
+#define SAMPLE_SIZE 192000
 /* ----------------------------------------------------------- */
 int main(void)
 {
 	unsigned int sample;
 	int i ,j;
 	unsigned int buffer_AIN_2[BUFFER_SIZE] ={0};
+	double local_buff[5000] = {0};
 
 	time_t rawtime;
 	char data_file_name[255];
@@ -32,10 +36,13 @@ int main(void)
 //	const int clk_div = 34 ;
 
 	// ADC sampling settings
-	const int clk_div = 25;
-	const int open_dly = 5;
+	//const int clk_div = 25;
+	//const int open_dly = 5;
+	//const int sample_dly = 1;
+	// setting for 192k
+	const int clk_div = 5;
+	const int open_dly = 10;
 	const int sample_dly = 1;
-
 	/*ADC work mode : Timer interrupt mode
 	 *	Note : This mode handle SIGALRM using signale() function in BBBIO_ADCTSC_work();
 	 */
@@ -54,7 +61,7 @@ int main(void)
 
 	//	BBBIO_ADCTSC_channel_ctrl(BBBIO_ADC_AIN1, BBBIO_ADC_STEP_MODE_SW_CONTINUOUS, 0, 1, BBBIO_ADC_STEP_AVG_1, buffer_AIN_1, 100);
 
-	printf("Starting capture...\n");
+	printf("Starting capture with rate %d ...\n", SAMPLE_SIZE);
 	// get time
 	time(&rawtime);
 
@@ -79,6 +86,9 @@ int main(void)
 	
 	// add current time value to top of file
 	fprintf(data_file, "%s", ctime(&rawtime));
+
+	//TODO Preproccesing here
+	
 
 	// write buffer to file
 	for(j = 0 ; j < SAMPLE_SIZE ; j++)
