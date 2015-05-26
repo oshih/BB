@@ -102,13 +102,9 @@ int main(void)
 		count++;
 	}
 	fclose(filter_fd);
-	printf("Filter loaded (%d)\n", count);
+	printf("Filter loaded #%d\n", count);
 	Prep(input, filter, prc_pt);	
 	printf("Preprocessing done\n");
-	//testing
-	for(i=0;i<5000;i++){
-		printf("[%f]", local_buff[i]);
-	}
 
 	// format file name
 	snprintf(data_file_name, sizeof(data_file_name), "%s", ctime(&rawtime));	//copy time to string
@@ -122,15 +118,21 @@ int main(void)
 	}
 	strcat(data_file_name,".dat" );
 	
-	printf("saving sound data to: %s\n",data_file_name);
+	printf("Saving processed sound data to: %s\n",data_file_name);
 	data_file = fopen(data_file_name,"w");	// open file in write mode
 	
 	// add current time value to top of file
 	fprintf(data_file, "%s", ctime(&rawtime));
 
 	// write buffer to file
-	for(j = 0 ; j < SAMPLE_SIZE ; j++)
-		fprintf( data_file, "%u\n", buffer_AIN_2[j] );
+	//for(j = 0 ; j < SAMPLE_SIZE ; j++)
+	//	fprintf( data_file, "%u\n", buffer_AIN_2[j] );
+
+	// Write processed data instead, should be 4096 in length
+	for(j = 0 ; j < 4096 ; j++)
+		fprintf( data_file, "%f\n", local_buff[j] );
+		
+
 
 	fclose( data_file );
 
