@@ -38,7 +38,7 @@ extern void Prep_initialize(emlrtContext *aContext);
 extern void Prep_terminate(void);
 extern void Prep_atexit(void);
 extern void Prep_api(const mxArray *prhs[2], const mxArray *plhs[1]);
-extern void Prep(emxArray_real32_T *raw_data, real32_T m_filter[10000], emxArray_real32_T *prc_data);
+extern void Prep(real32_T raw_data[192000], real32_T m_filter[100000], emxArray_real32_T *prc_data);
 extern void Prep_xil_terminate(void);
 
 #endif

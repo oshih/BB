@@ -10,7 +10,6 @@ MATLAB_PATH = ./matlab_lib/Prep
 
 LIBRARY = BBBio
 
-#include ./matlab_lib/Prep/Prep_rtw.mk
 #---------------------------------------------------
 # Compiler options
 #---------------------------------------------------
@@ -111,7 +110,7 @@ DAC_VOICE : ${DEMO_PATH}/Demo_DAC/DAC_voice.c ${LIB_PATH}/libBBBio.a
 	${CC} -o DAC_VOICE.out ${DEMO_PATH}/Demo_DAC/DAC_voice.c -L ${LIB_PATH} -l${LIBRARY} -lm -pthread -O3
 
 Sound_Capture_ADC : ${DEMO_PATH}/Demo_ADC/ADC.c ${LIB_PATH}/libBBBio.a ${MATLAB_PATH}/Prep.a
-	${CC} -o Sound_Capture_ADC.out ${DEMO_PATH}/Demo_Sound_Capture_ADC/Capture.c -L ${LIB_PATH} -I ${INCLUDE_PATH} -l${LIBRARY} -lm
+	${CC} -o Sound_Capture_ADC.out ${DEMO_PATH}/Demo_Sound_Capture_ADC/Capture.c -L ${LIB_PATH} -L ${MATLAB_PATH} -I ${INCLUDE_PATH} -I ${MATLAB_PATH} -l${LIBRARY} -lm
 #---------------------------------------------------
 # toolkit 
 #---------------------------------------------------

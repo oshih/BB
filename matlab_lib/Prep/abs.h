@@ -1,12 +1,12 @@
 /*
- * ipermute.h
+ * abs.h
  *
- * Code generation for function 'ipermute'
+ * Code generation for function 'abs'
  *
  */
 
-#ifndef __IPERMUTE_H__
-#define __IPERMUTE_H__
+#ifndef __ABS_H__
+#define __ABS_H__
 
 /* Include files */
 #include <math.h>
@@ -18,8 +18,8 @@
 #include "Prep_types.h"
 
 /* Function Declarations */
-extern void ipermute(const emxArray_creal32_T *b, emxArray_creal32_T *a);
+extern void b_abs(const creal32_T x[131073], float y[131073]);
 
 #endif
 
-/* End of code generation (ipermute.h) */
+/* End of code generation (abs.h) */

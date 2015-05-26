@@ -4,6 +4,14 @@
 #include <string.h>
 #include <time.h>
 #include "BBBiolib.h"
+#include "rt_nonfinite.h"
+#include "Prep.h"
+#include "Prep_emxutil.h"
+#include "abs.h"
+#include "bsxfun.h"
+#include "fft.h"
+#include "linspace.h"
+
 /* ----------------------------------------------------------- */
 //#define BUFFER_SIZE 48000
 //#define SAMPLE_SIZE 48000
@@ -11,16 +19,26 @@
 #define BUFFER_SIZE 192000
 #define SAMPLE_SIZE 192000
 /* ----------------------------------------------------------- */
+#define FILTER_FILE "c_20k_23k_500ms.txt"
+
 int main(void)
 {
 	unsigned int sample;
-	int i ,j;
+	int i ,j, count=0;
 	unsigned int buffer_AIN_2[BUFFER_SIZE] ={0};
-	double local_buff[5000] = {0};
-
 	time_t rawtime;
 	char data_file_name[255];
 	FILE* data_file;
+	//FILE* filter_fd;
+	//char fname[] = FILTER_FILE;
+/*
+	float local_buff[5000] = {0};
+	float input[BUFFER_SIZE] = {0};
+	float filter[100000] = {0};
+	struct emxArray_real32_T prc_data;	
+	struct emxArray_real32_T* prc_pt = &prc_data;
+	prc_pt->data = (float*)&local_buff;
+*/
 
 	/* BBBIOlib init*/
 	iolib_init();
@@ -68,6 +86,19 @@ int main(void)
 	// start capture
 	BBBIO_ADCTSC_channel_enable(BBBIO_ADC_AIN2);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
+	
+	// TODO:Preprocessing
+	// load filter
+	/*
+	count=0;
+	filter_fd =fopen(fname, "r");
+	while(count<100000 && fscanf(filter_fd, "%f\n", &filter[count])!= EOF){
+		printf("[%f]", filter[count]);
+		count++;
+	}
+	fclose(filter_fd);
+	printf("Filter loaded (%d)\n", count);
+	*/
 
 	// format file name
 	snprintf(data_file_name, sizeof(data_file_name), "%s", ctime(&rawtime));	//copy time to string
@@ -86,9 +117,6 @@ int main(void)
 	
 	// add current time value to top of file
 	fprintf(data_file, "%s", ctime(&rawtime));
-
-	//TODO Preproccesing here
-	
 
 	// write buffer to file
 	for(j = 0 ; j < SAMPLE_SIZE ; j++)

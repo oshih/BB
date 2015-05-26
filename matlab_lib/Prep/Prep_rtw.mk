@@ -2,7 +2,7 @@
 ## Makefile generated for MATLAB file/project 'Prep'. 
 ## 
 ## Makefile     : Prep_rtw.mk
-## Generated on : Fri May 22 16:46:22 2015
+## Generated on : Tue May 26 08:52:21 2015
 ## MATLAB Coder version: 2.7 (R2014b)
 ## 
 ## Build Info:
@@ -189,7 +189,7 @@ DEFINES = $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/codegen/lib/Prep/Prep_initialize.c $(START_DIR)/codegen/lib/Prep/Prep_terminate.c $(START_DIR)/codegen/lib/Prep/Prep.c $(START_DIR)/codegen/lib/Prep/ipermute.c $(START_DIR)/codegen/lib/Prep/Prep_emxutil.c $(START_DIR)/codegen/lib/Prep/Prep_emxAPI.c $(START_DIR)/codegen/lib/Prep/rt_nonfinite.c $(START_DIR)/codegen/lib/Prep/rtGetNaN.c $(START_DIR)/codegen/lib/Prep/rtGetInf.c
+SRCS = $(START_DIR)/codegen/lib/Prep/Prep_initialize.c $(START_DIR)/codegen/lib/Prep/Prep_terminate.c $(START_DIR)/codegen/lib/Prep/Prep.c $(START_DIR)/codegen/lib/Prep/abs.c $(START_DIR)/codegen/lib/Prep/linspace.c $(START_DIR)/codegen/lib/Prep/fft.c $(START_DIR)/codegen/lib/Prep/bsxfun.c $(START_DIR)/codegen/lib/Prep/Prep_emxutil.c $(START_DIR)/codegen/lib/Prep/Prep_emxAPI.c $(START_DIR)/codegen/lib/Prep/rt_nonfinite.c $(START_DIR)/codegen/lib/Prep/rtGetNaN.c $(START_DIR)/codegen/lib/Prep/rtGetInf.c
 
 ALL_SRCS = $(SRCS)
 
@@ -197,7 +197,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = Prep_initialize.o Prep_terminate.o Prep.o ipermute.o Prep_emxutil.o Prep_emxAPI.o rt_nonfinite.o rtGetNaN.o rtGetInf.o
+OBJS = Prep_initialize.o Prep_terminate.o Prep.o abs.o linspace.o fft.o bsxfun.o Prep_emxutil.o Prep_emxAPI.o rt_nonfinite.o rtGetNaN.o rtGetInf.o
 
 ALL_OBJS = $(OBJS)
 

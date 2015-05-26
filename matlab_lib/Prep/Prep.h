@@ -18,7 +18,7 @@
 #include "Prep_types.h"
 
 /* Function Declarations */
-extern void Prep(const emxArray_real32_T *raw_data, const float m_filter[10000],
+extern void Prep(const float raw_data[192000], const float m_filter[100000],
                  emxArray_real32_T *prc_data);
 
 #endif
