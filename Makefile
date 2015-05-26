@@ -6,11 +6,11 @@ LIB_PATH = ./BBBio_lib
 INCLUDE_PATH = ./BBBio_lib
 DEMO_PATH = ./Demo
 TOOLKIT_PATH = ./Toolkit
-LAB_PATH = ./Lab
-
+MATLAB_PATH = ./matlab_lib/Prep
 
 LIBRARY = BBBio
 
+#include ./matlab_lib/Prep/Prep_rtw.mk
 #---------------------------------------------------
 # Compiler options
 #---------------------------------------------------
@@ -42,6 +42,11 @@ ${LIB_PATH}/libBBBio.a : ${LIB_PATH}/BBBiolib.c ${LIB_PATH}/BBBiolib.h BBBiolib_
 	${CC} -c ${LIB_PATH}/BBBiolib.c -o ${LIB_PATH}/BBBiolib.o
 	${AR} -rs ${LIB_PATH}/libBBBio.a ${LIB_PATH}/BBBiolib.o ${LIB_PATH}/BBBiolib_PWMSS.o ${LIB_PATH}/BBBiolib_McSPI.o ${LIB_PATH}/BBBiolib_ADCTSC.o
 #	cp ${LIB_PATH}${LIB_PATH}/libBBBio.a ./
+
+${MATLAB_PATH}/Prep.a : do_script
+
+do_script:
+	cd ${MATLAB_PATH} && make -f Prep_rtw.mk
 
 BBBiolib_PWMSS.o : ${LIB_PATH}/BBBiolib_PWMSS.c ${LIB_PATH}/BBBiolib_PWMSS.h
 	${CC} -c ${LIB_PATH}/BBBiolib_PWMSS.c -o ${LIB_PATH}/BBBiolib_PWMSS.o -W 
@@ -105,7 +110,7 @@ ADC_VOICE : ${DEMO_PATH}/Demo_ADC/ADC_voice.c ${LIB_PATH}/libBBBio.a
 DAC_VOICE : ${DEMO_PATH}/Demo_DAC/DAC_voice.c ${LIB_PATH}/libBBBio.a
 	${CC} -o DAC_VOICE.out ${DEMO_PATH}/Demo_DAC/DAC_voice.c -L ${LIB_PATH} -l${LIBRARY} -lm -pthread -O3
 
-Sound_Capture_ADC : ${DEMO_PATH}/Demo_ADC/ADC.c ${LIB_PATH}/libBBBio.a
+Sound_Capture_ADC : ${DEMO_PATH}/Demo_ADC/ADC.c ${LIB_PATH}/libBBBio.a ${MATLAB_PATH}/Prep.a
 	${CC} -o Sound_Capture_ADC.out ${DEMO_PATH}/Demo_Sound_Capture_ADC/Capture.c -L ${LIB_PATH} -I ${INCLUDE_PATH} -l${LIBRARY} -lm
 #---------------------------------------------------
 # toolkit 
@@ -135,4 +140,4 @@ VD : ${LAB_PATH}Voice_Door/voice_door.cpp ${LIB_PATH}/libBBBio.a
 
 .PHONY: clean
 clean :
-	rm -rf ${LIB_PATH}/*.o ${LIB_PATH}/libBBBio.a *.out
+	rm -rf ${LIB_PATH}/*.o ${LIB_PATH}/libBBBio.a  ${MATLAB_PATH}/Prep.a *.out
