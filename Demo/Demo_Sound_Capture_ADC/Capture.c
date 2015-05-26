@@ -24,21 +24,24 @@
 int main(void)
 {
 	unsigned int sample;
-	int i ,j, count=0;
+	int i ,j, count=0, size=5000;
 	unsigned int buffer_AIN_2[BUFFER_SIZE] ={0};
 	time_t rawtime;
 	char data_file_name[255];
 	FILE* data_file;
-	//FILE* filter_fd;
-	//char fname[] = FILTER_FILE;
-/*
+	FILE* filter_fd;
+	char fname[] = FILTER_FILE;
+
 	float local_buff[5000] = {0};
 	float input[BUFFER_SIZE] = {0};
 	float filter[100000] = {0};
 	struct emxArray_real32_T prc_data;	
 	struct emxArray_real32_T* prc_pt = &prc_data;
 	prc_pt->data = (float*)&local_buff;
-*/
+	prc_pt->size = &size;
+	prc_pt->allocatedSize = size*sizeof(float);
+	prc_pt->numDimensions = 1;
+	prc_pt->canFreeData = false;	
 
 	/* BBBIOlib init*/
 	iolib_init();
@@ -87,18 +90,25 @@ int main(void)
 	BBBIO_ADCTSC_channel_enable(BBBIO_ADC_AIN2);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	
-	// TODO:Preprocessing
+	// Preprocessing
+	// copy and convert to float
+	for(i=0;i<BUFFER_SIZE;i++){
+		input[i] = (float)buffer_AIN_2[i];
+	} 
 	// load filter
-	/*
 	count=0;
 	filter_fd =fopen(fname, "r");
 	while(count<100000 && fscanf(filter_fd, "%f\n", &filter[count])!= EOF){
-		printf("[%f]", filter[count]);
 		count++;
 	}
 	fclose(filter_fd);
 	printf("Filter loaded (%d)\n", count);
-	*/
+	Prep(input, filter, prc_pt);	
+	printf("Preprocessing done\n");
+	//testing
+	for(i=0;i<5000;i++){
+		printf("[%f]", local_buff[i]);
+	}
 
 	// format file name
 	snprintf(data_file_name, sizeof(data_file_name), "%s", ctime(&rawtime));	//copy time to string
